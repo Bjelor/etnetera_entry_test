@@ -17,6 +17,7 @@ composeUi = { module = "androidx.compose.ui:ui", version.ref = "composeVersion" 
 composeUiTooling = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeVersion" }
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtxVersion" }
 koinAndroid = { module = "io.insert-koin:koin-android", version.ref = "koinVersion" }
+koinCompose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinVersion" }
 koinCore = { module = "io.insert-koin:koin-core", version.ref = "koinVersion" }
 lifecycleRuntime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleVersion" }
 lifecycleViewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleVersion" }
