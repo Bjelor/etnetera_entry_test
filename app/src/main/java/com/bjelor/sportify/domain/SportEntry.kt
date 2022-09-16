@@ -9,6 +9,7 @@ data class SportEntry(
     val place: String,
     val time: Instant,
     val source: Source = Source.Local, // FIXME
+    val id: Int = 0, // FIXME
 ) {
 
     enum class Source {
