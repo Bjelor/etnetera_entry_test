@@ -1,7 +1,7 @@
-package com.bjelor.sportify
+package com.bjelor.sportify.ui.resultlist
 
 import androidx.lifecycle.ViewModel
-import com.bjelor.sportify.domain.SportEntry
+import com.bjelor.sportify.domain.model.SportEntry
 import com.bjelor.sportify.domain.usecase.GetSportEntriesUseCase
 import kotlinx.coroutines.flow.Flow
 

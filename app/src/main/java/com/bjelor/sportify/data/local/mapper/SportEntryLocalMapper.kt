@@ -1,6 +1,7 @@
-package com.bjelor.sportify.domain
+package com.bjelor.sportify.data.local.mapper
 
 import com.bjelor.sportify.database.SportEntryEntity
+import com.bjelor.sportify.domain.model.SportEntry
 import java.time.Duration
 import java.time.Instant
 

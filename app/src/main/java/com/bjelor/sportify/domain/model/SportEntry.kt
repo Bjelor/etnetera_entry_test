@@ -1,4 +1,4 @@
-package com.bjelor.sportify.domain
+package com.bjelor.sportify.domain.model
 
 import java.time.Duration
 import java.time.Instant
