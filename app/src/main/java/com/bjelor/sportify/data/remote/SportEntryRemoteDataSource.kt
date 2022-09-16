@@ -1,6 +1,7 @@
 package com.bjelor.sportify.data.remote
 
-import com.bjelor.sportify.domain.SportEntry
+import com.bjelor.sportify.domain.model.SportEntry
+import com.bjelor.sportify.domain.model.SportEntryForm
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import java.time.Duration
@@ -35,4 +36,8 @@ class SportEntryRemoteDataSource {
                 )
             )
         )
+
+    suspend fun storeSportEntry(sportEntryForm: SportEntryForm) {
+        // TODO
+    }
 }

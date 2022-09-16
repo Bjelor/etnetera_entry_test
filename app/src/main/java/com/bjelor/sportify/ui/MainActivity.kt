@@ -1,4 +1,4 @@
-package com.bjelor.sportify
+package com.bjelor.sportify.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,9 +9,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SportifyMainActivityContainer { paddingValues ->
-                ResultListScreen(paddingValues)
-            }
+            SportifyComposeApp()
         }
     }
 }

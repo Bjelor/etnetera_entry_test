@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Sportify</string>
+    <string name="addentry.topbar.title">Add a new entry</string>
+    <string name="addentry.button.save">Save</string>
+    <string name="addentry.textfield.name.label">Name</string>
+    <string name="addentry.textfield.duration.label">Duration</string>
+    <string name="addentry.textfield.place.label">Place</string>
+    <string name="addentry.textfield.date.label">Date</string>
+    <string name="addentry.textfield.time.label">Time</string>
 </resources>

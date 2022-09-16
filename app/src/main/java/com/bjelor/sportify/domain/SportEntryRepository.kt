@@ -2,11 +2,16 @@ package com.bjelor.sportify.domain
 
 import com.bjelor.sportify.data.local.SportEntryLocalDataSource
 import com.bjelor.sportify.data.remote.SportEntryRemoteDataSource
+import com.bjelor.sportify.domain.model.SportEntry
+import com.bjelor.sportify.domain.model.SportEntryForm
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 
 class SportEntryRepository(
+    private val dispatchers: Dispatchers,
     private val localDataSource: SportEntryLocalDataSource,
     private val remoteDataSource: SportEntryRemoteDataSource,
 ) {
@@ -31,13 +36,13 @@ class SportEntryRepository(
         fetchSportEntriesFromSource(source)
             .sortedBy(sortBy)
 
-    // TODO
-    fun storeSportEntry(entry: SportEntry, target: Target) {
-        when (target) {
-            Target.Remote -> TODO()
-            Target.Local -> TODO()
+    suspend fun storeSportEntry(sportEntryForm: SportEntryForm, target: Target): Unit =
+        withContext(dispatchers.IO) {
+            when (target) {
+                Target.Remote -> remoteDataSource.storeSportEntry(sportEntryForm)
+                Target.Local -> localDataSource.storeSportEntry(sportEntryForm)
+            }
         }
-    }
 
     private fun fetchSportEntriesFromSource(source: Source): Flow<List<SportEntry>> =
         when (source) {
