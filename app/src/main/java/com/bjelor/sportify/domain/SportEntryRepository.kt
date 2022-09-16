@@ -2,6 +2,9 @@ package com.bjelor.sportify.domain
 
 import com.bjelor.sportify.data.local.SportEntryLocalDataSource
 import com.bjelor.sportify.data.remote.SportEntryRemoteDataSource
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 
 class SportEntryRepository(
     private val localDataSource: SportEntryLocalDataSource,
@@ -24,7 +27,7 @@ class SportEntryRepository(
         Name,
     }
 
-    suspend fun getSportEntries(source: Source, sortBy: SortBy = SortBy.Time): List<SportEntry> =
+    fun getSportEntries(source: Source, sortBy: SortBy = SortBy.Time): Flow<List<SportEntry>> =
         fetchSportEntriesFromSource(source)
             .sortedBy(sortBy)
 
@@ -36,17 +39,22 @@ class SportEntryRepository(
         }
     }
 
-    private suspend fun fetchSportEntriesFromSource(source: Source): List<SportEntry> =
+    private fun fetchSportEntriesFromSource(source: Source): Flow<List<SportEntry>> =
         when (source) {
             Source.Remote -> remoteDataSource.fetchSportEntries()
             Source.Local -> localDataSource.fetchSportEntries()
             Source.Both -> {
-                (remoteDataSource.fetchSportEntries() + localDataSource.fetchSportEntries())
+                combine(
+                    remoteDataSource.fetchSportEntries(),
+                    localDataSource.fetchSportEntries()
+                ) { remoteEntries, localEntries ->
+                    remoteEntries + localEntries
+                }
             }
         }
 
-    private fun List<SportEntry>.sortedBy(sortBy: SortBy) = when (sortBy) {
-        SortBy.Time -> sortedBy { it.time }
-        SortBy.Name -> sortedBy { it.name }
+    private fun Flow<List<SportEntry>>.sortedBy(sortBy: SortBy) = when (sortBy) {
+        SortBy.Time -> map { list -> list.sortedBy { it.time } }
+        SortBy.Name -> map { list -> list.sortedBy { it.name } }
     }
 }
