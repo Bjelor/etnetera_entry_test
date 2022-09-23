@@ -35,6 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bjelor.sportify.R
 import com.bjelor.sportify.domain.model.SportEntry
+import com.bjelor.sportify.ui.format
 import com.bjelor.sportify.ui.theme.SportifyTheme
 import java.time.Duration
 import java.time.Instant
@@ -118,7 +119,7 @@ fun ResultListItem(item: SportEntry) {
                 .align(Alignment.CenterVertically),
         ) {
             Text(text = item.name)
-            Text(text = item.duration.toString())
+            Text(text = item.duration.format())
         }
     }
 }

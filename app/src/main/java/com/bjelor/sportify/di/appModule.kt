@@ -9,6 +9,7 @@ import com.bjelor.sportify.domain.usecase.GetSportEntriesUseCase
 import com.bjelor.sportify.domain.usecase.SaveLocalSportEntryUseCase
 import com.bjelor.sportify.domain.usecase.SaveRemoteSportEntryUseCase
 import com.bjelor.sportify.ui.addentry.AddEntryViewModel
+import com.bjelor.sportify.ui.addentry.durationpicker.DurationPickerViewModel
 import com.bjelor.sportify.ui.resultlist.ResultListViewModel
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -17,7 +18,8 @@ import org.koin.dsl.module
 val appModule = module {
 
     viewModel { ResultListViewModel(get()) }
-    viewModel { AddEntryViewModel(get()) }
+    viewModel { params -> DurationPickerViewModel(params.get()) }
+    viewModel { AddEntryViewModel(get(), get()) }
 
     // region Data Source
 
