@@ -50,6 +50,7 @@ dependencies {
     // internal
 
     implementation project(path: ':database')
+    implementation project(path: ':remote')
 
     // external
 
